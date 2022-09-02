@@ -4,10 +4,16 @@ module top;
 	logic a;
 	logic b;
 	logic c;
+
 	logic [ 11:0] A;
 	logic [ 3:0]  B;
 	logic [ 3:0]  C;
 	logic [ 3:0]  D;
+
+	logic [ 7:0]  E;
+	logic [ 7:0]  F;
+	logic [ 7:0]  G;
+
 	initial begin
 		a = 1'b0;   $display("1'b0    =  %x", a);
 		a = 1'b1;   $display("1'b1    =  %x", a);
@@ -44,5 +50,22 @@ module top;
 		C = 4'b0011;
 		D = B ^~ C; $display("0101 ^~ 0011 = %x", D);
 		D = ^B;     $display("^1101 = %x",D);
+
+		E = 8'b1110_0101;
+		F = E << 1;  $display("1110_0101 << 1 = %b", F);
+		F = E << 2;  $display("1110_0101 << 2 = %b", F);
+		F = E >> 1;  $display("1110_0101 >> 1 = %b", F);
+		F = E >> 2;  $display("1110_0101 >> 2 = %b", F);
+
+		F = $signed(E) >>> 1;  $display("1110_0101 >>> 1 = %b", F);
+		F = $signed(E) >>> 2;  $display("1110_0101 >>> 2 = %b", F);
+
+		E = 8'b0110_0101;
+		F = $signed(E) >>> 1;  $display("0110_0101 >>> 1 = %b", F);
+		F = $signed(E) >>> 2;  $display("0110_0101 >>> 2 = %b", F);
+
+		E = 8'd20;
+		F = 8'd8;
+		a = E==F; $display("200 + 1 = %d", a);
 	end
 endmodule
